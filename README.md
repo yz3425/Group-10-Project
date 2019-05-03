@@ -4,6 +4,38 @@
 > Yizhou Zhang yz3425 <br />
 # General Information
 This project is created in order to analyze the lyrics for each given song. When we input the lyrics of the song, we could get back the song's id, artist, title, and the scores corresponding to the dimensions of kid-safe, love, mood, length and complexity. Additionally, the output of this project is a JSON object that has the above information for each individual song. 
+# Tools we used in this project:
+* **pandas:** <br />
+```
+# import pandas 
+import pandas as pd
+```
+**Description**: Pandas is the package included in Anaconda, which is used for data analysis and data structures. <br />
+**Usage**: We used pandas to create a dataframe of the lyrics file to make it more clearly to view and manage. <br />
+**Behavior**: The dataframe generated contains columns for id, artist, title, lyric, love, kid_safe, mood, length and complexity. For id, love, kid_safe, mood, length and complexity, they are all numbers. For artist, title, lyric, they are all strings. <br />
+For more information on the pandas package: [http://pandas.pydata.org](http://pandas.pydata.org)
+
+* **numpy:** <br />
+```
+# import numpy 
+import numpy as np
+```
+**Description**: Numpy is the package in Anaconda that is used for creating the large arrays. Operations like mathmatical functions, logical statements, statistical opertaions and other manipulations could be done on arrays using Numpy.    
+**Usage**: We used numpy in accordance with pandas to build a dataframe. Numpy allows us to put all the index, artist, and the lyrics of each given song into three different arrays. We then assign each array to the column in the dataframe of id, artist, and title. <br />
+**Behavior**: The values in the array for index are all numbers, where the values in the array for artist are all strings, and the values in the array for lyrics are strings as well.  <br />
+For more information on the numpy package: [https://docs.scipy.org/doc/](https://docs.scipy.org/doc/)
+
+* **json:** <br />
+```
+# import json 
+import json
+```
+**Description**: Json is used for changing the data format. <br />
+**Usage**: We used json at the end of our code to interchange our generated output into a json object. <br />
+**Behavior**：The json object is the final output of our project, and when we open the json object, it should have the form of a dictionary. Each song generates a dictionary, and the key is each characterization, like id, artist, title, and so on.    <br />
+For more information on the json: [https://docs.python.org/3/library/json.html#module-json](https://docs.python.org/3/library/json.html#module-json)
+
+
 # Key Characterization:
 * **'id':** <br />
 The key 'id' in the characterization is the identification number from the lyric file. It is directly provided as the begining of the three numbers given from the name of each song. 
