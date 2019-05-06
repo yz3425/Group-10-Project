@@ -10,6 +10,7 @@ import numpy as np
 # ! pip install langdetect
 from langdetect import detect
 import json
+import pprint
 
 
 # In[2]:
@@ -260,4 +261,4 @@ with open('result.json') as fp:
 new_dict = {}
 new_dict['characterization'] = data
 
-new_dict
+pprint.pprint(new_dict)
