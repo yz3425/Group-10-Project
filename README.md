@@ -75,3 +75,6 @@ The key 'mood' reveals the mood of a given song based on its lyrics. The score a
 The key 'length' indicates whether it is a long song or a short song. A low score indicates it is a short song, and vice versa. It is also based on percentile. 
 * **'complexity':** <br />
 The key 'Complexity' shows if the song is a easy song. A function is created to count the repeating words in lyrics. A low score for complexity indicates it is a easy song, and vice versa. Each individual score for complexity is also based on the percentile. 
+# Additional Notes:
+Foreign songs:
+All non-english songs will have N/A for their love, kid_safe and mood scores. Langdect is used to identify the language of each song, please refer to the requirement.txt file for further details.
