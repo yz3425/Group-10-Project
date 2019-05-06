@@ -260,4 +260,4 @@ with open('result.json') as fp:
 new_dict = {}
 new_dict['characterization'] = data
 
-print(new_dict)
+new_dict
