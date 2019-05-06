@@ -2,3 +2,6 @@
 from langdetect import detect
 
 We installed langdetect to help us identify songs that are not in English. We applied a detect function in this package to each single lyric and it will return value such as 'en' for english and 'es' for spanish. For all the lyric (song) that do not return 'en', we considered them as foreign songs and they will have a 'N/A' value for their love, kid_safe and mood score.
+
+For more details, please refer to link below:
+https://pypi.org/project/langdetect/
