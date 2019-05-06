@@ -56,6 +56,17 @@ from os.path import isfile, join
 For more information on the os.path: 
 https://docs.python.org/2/library/os.path.html
 
+* **pprint**: <br />
+```
+#import pprint
+import pprint
+```
+**Description**: Data pretty print allows us to print the output in a pretty way. <br />
+**Usage**: We used pprint at the end of the project to print out a pretty output in the characterization part. <br />
+**Behavior**: Before using pprint, all the lyrics output are together without spacing or format, which is unclear to see. After the pprint, it looks more pretty and orgainzed. <br />
+For more information on pprint:
+https://docs.python.org/3/library/pprint.html
+
 # Key Characterization:
 * **'id':** <br />
 The key 'id' in the characterization is the identification number from the lyric file. It is directly provided as the begining of the three numbers given from the name of each song. 
