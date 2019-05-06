@@ -1,7 +1,6 @@
-#!/usr/bin/env python
 # coding: utf-8
 
-# In[77]:
+# In[1]:
 
 
 from os import listdir
@@ -13,7 +12,7 @@ from langdetect import detect
 import json
 
 
-# In[105]:
+# In[2]:
 
 
 ####making data frame part
@@ -35,7 +34,7 @@ dataframe = pd.DataFrame({"id":index,
                     "lyric":lyric_list})
 
 
-# In[107]:
+# In[3]:
 
 
 # turn columns Song and lyric into string
@@ -48,7 +47,7 @@ for i in range (len(dataframe)):
     dataframe['title'][i] = dataframe['title'][i][:-4]
 
 
-# In[108]:
+# In[4]:
 
 
 # function used to calculate the score for love,kid_safe and mood
@@ -90,25 +89,27 @@ def score_calculator(list):
     return score
 
 
-# In[109]:
+# In[93]:
 
 
 # love score
 def Love_score(string)-> str:
-    love_count= sum(map(string.count,('love','loving','sweet','sweetness','baby','babe',
-                                           'sweetheart','cute','cutest','cuteness','honey',
-                                           'loved','affection','adore','adorable',
-                                           'angel','dear','dearest','darling','fond','fondness','heart',
-                                           'kiss','romance','romantic','appreciate','appreciation','amour','attach',
-                                          'enjoy','like','liking','devote','devoted','worship','crush','sugar',
-                                          'idol','cherish','cherishing','beloved','truelove','treasure','sweetie')))
+    love_words={'love','loving','sweet','sweetness','baby','babe',
+               'sweetheart','cute','cutest','cuteness','honey',
+               'loved','affection','adore','adorable',
+               'angel','dear','dearest','darling','fond','fondness','heart',
+               'kiss','romance','romantic','appreciate','appreciation','amour','attach',
+              'enjoy','like','liking','devote','devoted','worship','crush','sugar',
+              'idol','cherish','cherishing','beloved','truelove','treasure','sweetie'}
+    love_count= sum(map(string.count,love_words))
     
-    hate_count= sum(map(string.count,('hate','hatred','enemy','resent','disgust','disgusting','horror','horrible',
-                                          'loath','reject','rejection','revolt','detest', 'refuse','loath','hell','shit',
-                                          'rage','lies','lier','lying','lie','lied',
-                                          'cheat','cheater','sick','sickness','nausea','dislike','deceive',
-                                          'disappointed','disappointing','disappoint','fake','faking','faked','victim',
-                                          'scam','burn','fooled','trick','tricked','delude','delusion','deluded','joke','bad','worst')))
+    hate_words = {'hate','hatred','enemy','resent','disgust','disgusting','horror','horrible',
+                  'loath','reject','rejection','revolt','detest', 'refuse','loath','hell','shit',
+                  'rage','lies','lier','lying','lie','lied',
+                  'cheat','cheater','sick','sickness','nausea','dislike','deceive',
+                  'disappointed','disappointing','disappoint','fake','faking','faked','victim',
+                  'scam','burn','fooled','trick','tricked','delude','delusion','deluded','joke','bad','worst'}
+    hate_count= sum(map(string.count,hate_words))
 
     love=love_count-hate_count
     return love
@@ -119,25 +120,29 @@ for i in range (len(dataframe)):
 dataframe['love']=score_calculator(love_count)
 
 
-# In[110]:
+# In[94]:
 
 
 # kid_safe score
 def Kid_score(string)-> str:
-    KidSafe_count=sum(map(string.count,('happy', 'happiness', 'joy', 'active', 'beautiful', 'smiley',
-                                     'inspiring', 'joyous', 'kissable', 'smile', 'smiling', 'amaze', 'amazing', 'dream', 'smart',
-                                     'blessed', 'bright', 'friendly', 'funny', 'cheerful', 'charming', 'gorgeous', 'good', 'playful', 'treasured',
-                                     'cute', 'huggable', 'proud', 'wonderful', 'prince', ' princess', 'wonder', 'friend', 'miracle', 'teddy bear',
-                                     'toys', 'family', 'friend', 'angle', 'star')))   
-    NotKidSafe_count=sum(map(string.count,('fuck', 'fucking', 'shit', 'bloody', 'screw', 'screwed','ass', 
-                                                  'asshole', 'dammnit', 'damn', 'bitch','bitches', 'son of a bitch', 'frick',
-                                                  'hell', 'dumb', 'butt', 'screw', 'crap', 'idiot', 'cocksucker', 'jerk',
-                                                  'motherfucker', 'schmuck', 'jackass', 'bastard', 'dickhead',
-                                                 'asshat', 'dumbo', 'moron', 'loser', 'nerd', 'fool', 'kill', 'murder',
-                                                 'killing', 'killed', 'injure', 'injured', 'suicide', 'bloodying', 'blood',
-                                                 'dick', 'cock', 'piss', 'fuck you', 'fuck off', 'frigger', 'nigga',
-                                                 'sucker', 'nigger', 'prick', 'slut', 'whore', 'darn', 'pussy', 'fag',
-                                                 'douche', 'bitchy','bitchass', 'bullshit', 'jerk')))
+    KidSafe_words={'happy', 'happiness', 'joy', 'active', 'beautiful', 'smiley',
+                 'inspiring', 'joyous', 'kissable', 'smile', 'smiling', 'amaze', 'amazing', 'dream', 'smart',
+                 'blessed', 'bright', 'friendly', 'funny', 'cheerful', 'charming', 'gorgeous', 'good', 'playful', 'treasured',
+                 'cute', 'huggable', 'proud', 'wonderful', 'prince', ' princess', 'wonder', 'friend', 'miracle', 'teddy bear',
+                 'toys', 'family', 'friend', 'angel', 'star'}
+    KidSafe_count=sum(map(string.count,KidSafe_words)) 
+    
+    NotKidSafe_words={'fuck', 'fucking', 'shit', 'bloody', 'screw', 'screwed','ass', 
+                      'asshole', 'dammnit', 'damn', 'bitch','bitches', 'son of a bitch', 'frick',
+                      'hell', 'dumb', 'butt', 'screw', 'crap', 'idiot', 'cocksucker', 'jerk',
+                      'motherfucker', 'schmuck', 'jackass', 'bastard', 'dickhead',
+                     'asshat', 'dumbo', 'moron', 'loser', 'nerd', 'fool', 'kill', 'murder',
+                     'killing', 'killed', 'injure', 'injured', 'suicide', 'bloodying', 'blood',
+                     'dick', 'cock', 'piss', 'fuck you', 'fuck off', 'frigger', 'nigga',
+                     'sucker', 'nigger', 'prick', 'slut', 'whore', 'darn', 'pussy', 'fag',
+                     'douche', 'bitchy','bitchass', 'bullshit'}
+    NotKidSafe_count=sum(map(string.count,NotKidSafe_words))
+    
     kid_safe=KidSafe_count-NotKidSafe_count
     return kid_safe
 
@@ -147,22 +152,27 @@ for i in range (len(dataframe)):
 dataframe['kid_safe']=score_calculator(kid_safe_count)
 
 
-# In[111]:
+# In[97]:
 
 
 # mood score
 def Mood_score(string)-> str:
-    sad_count=sum(map(string.count,('sad','sadness','tear','tears','cry','cried','cries','crying',
-                                  'blue','fear','fears','feared','weep', 'weeping','sob','sobbing','scream',
-                                  'screaming','lonely','hurt','hurts','hurted','alone','drowning','drowned','broken',
-                                'break','down')))
+    sad_words={'sad','sadness','tear','tears','cry','cried','cries','crying',
+            'blue','fear','fears','feared','weep', 'weeping','sob','sobbing','scream',
+            'screaming','lonely','hurt','hurts','hurted','alone','drowning','drowned','broken',
+            'break','down'}
+    sad_count=sum(map(string.count,sad_words))
 
-    happy_count=sum(map(string.count,('happy', 'happiness', 'contented', 'content', 'cheerful', 'cheer', 'cheery', 'merry', 'joyful', 
-                                    'gleeful', 'joke', 'joking', 'smiling', 'delighted', 'smiling', 'smile', 'glowing', 'satisfied', 'satisfy', 'satisfying'
-                                    'sunny', 'sun', 'bless', 'blessing', 'blessed', 'good-humored', 'thrilled', 'blissful', 'lucky', 'blissful', 
-                                   'favorable', 'favorable', 'active', 'beautiful', 'smiley','smiling', 'amaze', 'amazing', 'bright',  'funny', 
-                                   'cheerful', 'lucky', 'heaven', 'glad', 'pleased', 'alive', 'glad', 'excited')))
+    
+    happy_words={'happy', 'happiness', 'content', 'cheerful', 'cheery', 'merry', 'joyful', 
+                    'gleeful', 'joke', 'joking', 'delighted', 'smiling', 'smile', 'glowing', 'satisfied', 'satisfy', 'satisfying'
+                    'sunny', 'sun', 'blessing', 'blessed', 'good-humored', 'thrilled', 'blissful', 'lucky',  
+                   'favorable', 'active', 'beautiful', 'smiley','smiling', 'amaze', 'amazing', 'bright',  'funny', 
+                  'lucky', 'heaven', 'glad', 'pleased', 'alive', 'glad', 'excited'}
+    happy_count=sum(map(string.count,happy_words))
+    
     mood=happy_count-sad_count
+
     return mood
 
 mood_count = [0 for x in range(len(dataframe))] 
@@ -171,7 +181,7 @@ for i in range (len(dataframe)):
 dataframe['mood']=score_calculator(mood_count)
 
 
-# In[112]:
+# In[99]:
 
 
 # function used to calculate the score for love,kid_safe and mood
@@ -200,7 +210,7 @@ for i in range (len(dataframe)):
 dataframe['length']=length_and_complexity_score_calculator(length_count)
 
 
-# In[113]:
+# In[9]:
 
 
 # function to calculate how many unique words in a string
@@ -221,7 +231,7 @@ for i in range (len(dataframe)):
 dataframe['complexity']=length_and_complexity_score_calculator(complexity_count)
 
 
-# In[114]:
+# In[10]:
 
 
 for i in range (len(dataframe)): 
@@ -231,8 +241,7 @@ for i in range (len(dataframe)):
         dataframe['mood'][i]='N/A'
 
 
-# In[117]:
-
+# In[14]:
 
 data2 = dataframe[['id','artist','title','kid_safe','love','mood','length','complexity']]
 Export = data2.to_json('result.json',orient='records')
