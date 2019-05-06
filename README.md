@@ -32,9 +32,29 @@ import json
 ```
 **Description**: Json is used for changing the data format. <br />
 **Usage**: We used json at the end of our code to interchange our generated output into a json object. <br />
-**Behavior**：The json object is the final output of our project, and when we open the json object, it should have the form of a dictionary. Each song generates a dictionary, and the key is each characterization, like id, artist, title, and so on.    <br />
+**Behavior**：The json object is the final output of our project, and when we open the json object, it should have the form of a dictionary. Each song generates a dictionary, and the key is each characterization, like id, artist, title, and so on.    
 For more information on the json: [https://docs.python.org/3/library/json.html#module-json](https://docs.python.org/3/library/json.html#module-json)
 
+* **listdir in OS Module:** <br />
+```
+# from os import listdir 
+from os import listdir
+```
+**Description**: OS Module is created to furthur implement with the operating system. The listdir method is contained in the OS Module, which is used for returning the list containing the names of the files in the given path.  
+**Usage**: We used os and listdir to create our dataframe for the lyrics in the begining of this project. That is, by given the path of where the lyrics folder is stored, we can use the listdir method to return the list containing each lyric. <br />
+**Behavior**：The output for the listdir method is a list which has all the songs. We used the list to generate the datafram to make it more clear to implement. <br />
+For more information on the listdir: https://www.tutorialspoint.com/python/os_listdir.htm
+
+* **from os.path import isfile, join:** <br />
+```
+# from os.path import isfile, join 
+from os.path import isfile, join
+```
+**Description**: The isfile method returns the value on whether the given thing is a file, or in other words, it will return True if it is an existing regular file.  
+**Usage**: It is also used to create a dataframe for the lyrics at the begining of our project. <br />
+**Behavior**: With combination in the codes with the listdir method, we output a list which has all the lyrics files. <br />
+For more information on the os.path: 
+https://docs.python.org/2/library/os.path.html
 
 # Key Characterization:
 * **'id':** <br />
